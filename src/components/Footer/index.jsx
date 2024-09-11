@@ -65,7 +65,7 @@ const Footer = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Apple Store</h2>
             <p className="mb-4">Explore the latest devices and offers on the Apple Store.</p>
-            <p>Copyright © 2024 Apple Inc. All rights reserved.</p>
+            <p>Copyright © 2024 Krishna Ag. All rights reserved.</p>
           </div>
         </div>
       </div>
