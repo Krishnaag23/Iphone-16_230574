@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}"
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -12,12 +10,11 @@ module.exports = {
           100: "#94928d",
           200: "#afafaf",
           300: "#42424570",
+        },
+        orange: {
+          500: "#FFA500",
+        },
 
-        },
-        orange:{
-          500: "#FFA500"
-        },
-        
         stroke: "#EEEEEE",
         strokedark: "#2D2F40",
         hoverdark: "#252A42",
@@ -64,15 +61,25 @@ module.exports = {
           "0%": { opacity: 0, transform: "translateY(20px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleUp: {
+          "0%": { transform: "scale(0.98)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
       },
       animation: {
         line1: "line 3s linear infinite",
         line2: "line 6s linear infinite",
         line3: "line 9s linear infinite",
         fadeInUp: "fadeInUp 0.5s ease-out",
+        fadeIn: "fadeIn 0.5s ease-in-out",
+        scaleUp: "scaleUp 0.5s ease-in-out",
       },
     },
   },
   plugins: [],
-}
+};
 
