@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, useCallback } from "react";
 import { motion } from "framer-motion";
-import FeaturesTabItem from "./FeaturesTabItem";
 import featuresTabData from "./featuresTabData";
+
+// Lazy load FeaturesTabItem 
+const FeaturesTabItem = React.lazy(() => import("./FeaturesTabItem"));
 
 const FeaturesTab = () => {
   const [currentTab, setCurrentTab] = useState("tabOne");
+
+  
+  const handleTabClick = useCallback((id) => {
+    setCurrentTab(id);
+  }, []);
 
   return (
     <>
@@ -21,7 +28,7 @@ const FeaturesTab = () => {
             {featuresTabData.map((feature, index) => (
               <motion.div
                 key={feature.id}
-                onClick={() => setCurrentTab(feature.id)}
+                onClick={() => handleTabClick(feature.id)}
                 className={`relative flex w-full cursor-pointer items-center gap-4 border-b-2 transition-colors duration-300 px-6 py-3 last:border-0 dark:border-strokedark md:w-auto md:border-0 xl:px-10 xl:py-4 ${
                   currentTab === feature.id
                     ? "border-b-primary dark:border-b-primary"
@@ -42,7 +49,7 @@ const FeaturesTab = () => {
             ))}
           </motion.div>
 
-          {/* Tab Content */}
+          
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             key={currentTab}
@@ -55,15 +62,13 @@ const FeaturesTab = () => {
                 key={feature.id}
                 className={feature.id === currentTab ? "block" : "hidden"}
                 initial={{ opacity: 0, y: -20 }}
-                animate={
-                  feature.id === currentTab
-                    ? { opacity: 1, y: 0 }
-                    : {}
-                }
+                animate={feature.id === currentTab ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5 }}
               >
                 {feature.id === currentTab && (
-                  <FeaturesTabItem featureTab={feature} />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <FeaturesTabItem featureTab={feature} />
+                  </Suspense>
                 )}
               </motion.div>
             ))}

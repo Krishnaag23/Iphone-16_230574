@@ -49,7 +49,7 @@ const iphoneGalleryData = [
     title: "iPhone 16 Pro",
     specs: "6.1-inch display, A17 Bionic chip, 256GB storage",
   },
-  // Additional entries can be added here
+  
 ];
 
 const IphoneGallery = () => {
@@ -69,7 +69,8 @@ const IphoneGallery = () => {
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-800">iPhone Gallery</h2>
           <p className="text-lg text-gray-600">
-            Discover the latest iPhones with cutting-edge technology and sleek design.
+            Discover the latest iPhones with cutting-edge technology and sleek
+            design.
           </p>
         </div>
 
@@ -89,8 +90,8 @@ const IphoneGallery = () => {
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
-              navigation // Enable navigation arrows
-              pagination={{ clickable: true }} // Enable pagination dots
+              navigation
+              pagination={{ clickable: true }}
               modules={[Pagination, Navigation]}
               breakpoints={{
                 640: { slidesPerView: 2 },
@@ -106,10 +107,11 @@ const IphoneGallery = () => {
                     onMouseLeave={handleMouseLeave}
                   >
                     <img
+                      loading="lazy"
                       src={item.image}
                       alt={item.title}
                       className={`w-full h-auto object-cover transition-transform duration-300 ${
-                        isZoomed === index ? 'scale-110' : ''
+                        isZoomed === index ? "scale-110" : ""
                       }`}
                     />
                     <h3 className="text-xl font-semibold mt-4 text-gray-800">
